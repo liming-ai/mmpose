@@ -1,15 +1,15 @@
 #!/bin/bash
 
-#SBATCH --job-name=reward_controlnet
+#SBATCH --job-name=dker_hrnet-w48_8xb10_humanart-512x512
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=2
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=4
 #SBATCH --mem=500G
 #SBATCH --gres=gpu:2
-#SBATCH --time=24:00:00
+#SBATCH --time=2-00:00:00
 #SBATCH --constrain=h100
-#SBATCH --output=ft_ade20k.out
-#SBATCH --error=ft_ade20k.err
+#SBATCH --output=dker_hrnet-w48_8xb10_humanart-512x512.out
+#SBATCH --error=dker_hrnet-w48_8xb10_humanart-512x512.err
 
 module load anaconda
 module load cuda/cuda-12.1
