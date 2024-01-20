@@ -121,9 +121,9 @@ model = dict(
 find_unused_parameters = True
 
 # base dataset settings
-dataset_type = 'HumanArtDataset'
+dataset_type = 'CocoDataset'
 data_mode = 'bottomup'
-data_root = 'data/'
+data_root = 'data/coco/'
 
 # pipelines
 train_pipeline = [
@@ -159,13 +159,13 @@ train_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_mode=data_mode,
-        ann_file='HumanArt/annotations/training_humanart_coco.json',
-        data_prefix=dict(img=''),
+        ann_file='annotations/person_keypoints_train2017.json',
+        data_prefix=dict(img='train2017/'),
         pipeline=train_pipeline,
     ))
 val_dataloader = dict(
     batch_size=1,
-    num_workers=2,
+    num_workers=1,
     persistent_workers=True,
     drop_last=False,
     sampler=dict(type='DefaultSampler', shuffle=False, round_up=False),
@@ -173,8 +173,8 @@ val_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_mode=data_mode,
-        ann_file='HumanArt/annotations/validation_humanart.json',
-        data_prefix=dict(img=''),
+        ann_file='annotations/person_keypoints_val2017.json',
+        data_prefix=dict(img='val2017/'),
         test_mode=True,
         pipeline=val_pipeline,
     ))
@@ -183,5 +183,8 @@ test_dataloader = val_dataloader
 # evaluators
 val_evaluator = dict(
     type='CocoMetric',
-    ann_file=data_root + 'HumanArt/annotations/validation_humanart.json')
+    ann_file=data_root + 'annotations/person_keypoints_val2017.json',
+    nms_mode='none',
+    score_mode='keypoint',
+)
 test_evaluator = val_evaluator
