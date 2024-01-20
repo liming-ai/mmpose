@@ -25,7 +25,7 @@ custom_hooks = [
 # multi-processing backend
 env_cfg = dict(
     cudnn_benchmark=False,
-    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=4),
+    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=1),
     dist_cfg=dict(backend='nccl'),
 )
 
