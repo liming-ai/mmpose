@@ -33,7 +33,7 @@ default_hooks = dict(checkpoint=dict(save_best='coco/AP', rule='greater'))
 codec = dict(
     type='SPR',
     input_size=(512, 512),
-    heatmap_size=(128, 128),
+    heatmap_size=(512, 512),
     sigma=(4, 2),
     minimal_diagonal_length=32**0.5,
     generate_keypoint_heatmaps=True,
